@@ -1,6 +1,8 @@
 import { AllowNull, AutoIncrement, Column, Model, PrimaryKey, Table,DataType } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
-
+import { Role } from "src/roles/roles.model";
+import { BelongsToMany } from "sequelize-typescript";
+import { UserRoles } from "src/roles/user-roles.model";
 interface UserCreationAttrs{
     email:string;
     password:string;
@@ -47,5 +49,8 @@ export class User extends Model<User,UserCreationAttrs>{
     })
     banReason: string;
 
+    //это штука нужна чтобы sequelize знал , что юзер и роль связаны через таблицу мост - userroles
+    @BelongsToMany(() =>Role,()=> UserRoles)
+    roles:Role[];
 
 }
