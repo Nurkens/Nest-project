@@ -26,28 +26,28 @@ export class User extends Model<User,UserCreationAttrs>{
         unique:true,
         allowNull: false
     })
-    email: string;
+    declare email: string;
 
     @ApiProperty({example:'admin123',description:"Password"})
     @Column({
         type: DataType.STRING,
         allowNull: false
     })
-    password: string;
+    declare password: string;
 
     @ApiProperty({example:'true',description:"User banned or not "})
     @Column({
         type: DataType.BOOLEAN,
         defaultValue: false
     })
-    banned: boolean;
+    declare banned: boolean;
 
     @ApiProperty({example:'banned for spamming',description:"Reason of banning"})
     @Column({
         type: DataType.STRING,
         allowNull:true
     })
-    banReason: string;
+    declare banReason: string;
 
     //это штука нужна чтобы sequelize знал , что юзер и роль связаны через таблицу мост - userroles
     @BelongsToMany(() =>Role,()=> UserRoles)

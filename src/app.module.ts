@@ -9,6 +9,9 @@ import { RolesService } from './roles/roles.service';
 import { RolesModule } from './roles/roles.module';
 import { Role } from "./roles/roles.model";
 import { UserRoles } from "./roles/user-roles.model";
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 dotenv.config({ path: `.${process.env.NODE_ENV || 'development'}.env` });
 
@@ -31,7 +34,7 @@ dotenv.config({ path: `.${process.env.NODE_ENV || 'development'}.env` });
             models: [User,Role,UserRoles],
             autoLoadModels: true
         }), 
-        UsersModule, RolesModule
+        UsersModule, RolesModule, AuthModule
     ]
 })
 export class AppModule {}
