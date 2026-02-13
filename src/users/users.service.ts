@@ -13,7 +13,7 @@ export class UsersService {
 
     async createUsers(dto: CreateUserDto){
         const user = await this.userRepository.create(dto);
-        const role = await this.rolesService.getRoleByValue("USER");
+        const role = await this.rolesService.getRoleByValue("ADMIN");
         if (!role) {
             throw new Error('user role not found');
         }
